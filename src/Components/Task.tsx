@@ -1,12 +1,10 @@
-export default function Task({
-  id_tarea: number,
-  id_user: number,
-  tarea: string,
-  descri: string,
-}) {
-  const url = "somehost";
+import { Tarea } from "../Schemas/Tarea";
+
+export default function Task({ id_tarea, id_user, tarea, descri }: Tarea) {
+  const endpoint =
+    "http://localhost:8000/tasks" + "/" + id_user + "/" + id_tarea; // change somehost
   async function deleteTask() {
-    await fetch(url + "/" + id_user + "/" + id_tarea, {
+    await fetch(endpoint, {
       method: "DELETE",
     })
       .then((res) => {
@@ -20,10 +18,18 @@ export default function Task({
   }
   return (
     <>
-      <div>
-        <div>{tarea}</div>
-        <div>{descri}</div>
-        <button onClick={deleteTask}>Eliminar tarea</button>
+      <div className="flex justify-center items-center">
+        <div className="w-[80%]">
+          <div>{tarea}</div>
+          <div>{descri}</div>
+        </div>
+
+        <button
+          className="bg-[#fc1100] text-[#fff] rounded-md "
+          onClick={deleteTask}
+        >
+          x
+        </button>
       </div>
     </>
   );
