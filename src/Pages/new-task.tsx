@@ -12,7 +12,7 @@ export function NewTask() {
   async function createTask() {
     await fetch("http://localhost:8000/tasks/" + user, {
       method: "POST",
-      body: JSON.stringify({ id_user: user, tarea, descri }),
+      body: JSON.stringify({id_tarea:0, id_user: user, tarea: tarea, descri: descri }),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => alert("Tarea creada con exito"))
